@@ -18,18 +18,32 @@ namespace Tekstiseikkailu
                 Tyyppi.TeeTyyppi();
 
                 Pelimoottori.KirjoitaRuuudulle(
-                    "Moi " + Tyyppi.nimi + "\n" +
-                    "Aloitamme nyt pelin arpomalla aloitushuoneen");
+                    "Moi " + Tyyppi.nimi);
+
+                Pelimoottori.KirjoitaRuuudulle(
+                    "Voit koska tahansa tarkastella hahmoasi kirjoittamalla 'c'\n" + 
+                    "Näet silloin seuraavan ruudun:");
+
+                Tyyppi.EsittelyTyyppi();
+
+                Pelimoottori.KirjoitaRuuudulle("Aloitamme nyt pelin arpomalla aloitushuoneen");
+
+                Pelimoottori.Pysäytä();
+                Pelimoottori.SiivoaRuutu();
 
                 Pelimoottori.LataaHuoneet(new Armeija(), new Aarrearkku());
 
                 while (Pelimoottori.Tarkista())
                 {
-                    if(!Pelimoottori.SatunnainenHuone())
+                    
+                    if (!Pelimoottori.SatunnainenHuone())
                     {
                         Pelimoottori.KirjoitaRuuudulle("Pelasit kaikki huoneet läpi, onneksi olkoon!");
+                        Pelimoottori.Pysäytä();
                         break;
                     }
+                    Pelimoottori.Pysäytä();
+                    Pelimoottori.SiivoaRuutu();
                 }
 
                 Pelimoottori.KirjoitaRuuudulle("Peli loppui");
@@ -39,6 +53,8 @@ namespace Tekstiseikkailu
                 {
                     break;
                 }
+
+                Pelimoottori.RuutuVaihto();
             }
         }
     }

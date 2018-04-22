@@ -10,6 +10,8 @@ namespace Tekstiseikkailu
         static Random rnd = new Random();
         static List<IHuone> huoneet;
 
+        public static int tavoite = 10;
+
         public static void KirjoitaRuuudulle(string teksti)
         {
             Console.WriteLine(teksti);
@@ -34,7 +36,7 @@ namespace Tekstiseikkailu
 
         public static bool Tarkista()
         {
-            if(Tyyppi.pisteet > 10)
+            if(Tyyppi.pisteet >= tavoite)
             {
                 KirjoitaRuuudulle("VOITTO! Sä voitit! Oot ihan paras <3");
                 return false;
@@ -44,7 +46,7 @@ namespace Tekstiseikkailu
                 return true;
             }
             KirjoitaRuuudulle("Oi voi. Olet kuollut. Seikkailu päättyi tähän." +
-                "Sait kuitenkin pisteitä " + Tyyppi.pisteet + "/10");
+                "Sait kuitenkin pisteitä " + Tyyppi.pisteet + "/" + tavoite);
             return false;
         }
 
@@ -53,11 +55,22 @@ namespace Tekstiseikkailu
             Console.WriteLine("************************************************************************");
         }
 
+        public static void SiivoaRuutu()
+        {
+            Console.Clear();
+        }
+
         public static string Kysy(string kysymys)
         {
             Console.Write(kysymys);
 
             return Console.ReadLine();
+        }
+
+        public static void Pysäytä()
+        {
+            Console.WriteLine("(jatka painamalla mitä tahansa näppäintä)");
+            Console.ReadKey();
         }
 
         public static string TeeValinta(params string[] valinnat)
@@ -68,7 +81,6 @@ namespace Tekstiseikkailu
                 RuutuVaihto();
                 KirjoitaRuuudulle("Vaihtoehdot:");
 
-
                 i = 1;
                 foreach (string valinta in valinnat)
                 {
@@ -76,6 +88,12 @@ namespace Tekstiseikkailu
                     i++;
                 }
                 string vastaus = Pelimoottori.Kysy("Mitä teet:").ToLower();
+
+                if(vastaus == "c")
+                {
+                    Tyyppi.EsittelyTyyppi();
+                    continue;
+                }
 
                 int vastausLöyty = Array.IndexOf(valinnat, vastaus);
                 if (vastausLöyty > -1)

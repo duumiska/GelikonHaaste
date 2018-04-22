@@ -17,7 +17,18 @@ namespace Tekstiseikkailu
         public static void TeeTyyppi()
         {
             pisteet = 0;
+            elossa = true;
             nimi = Pelimoottori.Kysy("Anna nimi: ");
+        }
+
+        public static void EsittelyTyyppi()
+        {
+            Pelimoottori.KirjoitaRuuudulle("------------------------------------------------------------------------------");
+            Pelimoottori.KirjoitaRuuudulle("| Nimi:" + nimi + " pisteitä:" + pisteet + "/" + Pelimoottori.tavoite);
+            Pelimoottori.KirjoitaRuuudulle("| Taisteluvoima:" + taisteluvoima);
+            Pelimoottori.KirjoitaRuuudulle("| Ketteryys:" + taisteluvoima);
+            Pelimoottori.KirjoitaRuuudulle("| Näppäryys:" + taisteluvoima);
+            Pelimoottori.KirjoitaRuuudulle("------------------------------------------------------------------------------");
         }
 
         public static void Kuole()

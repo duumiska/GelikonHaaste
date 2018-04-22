@@ -33,6 +33,7 @@ namespace Tekstiseikkailu
                                 Tyyppi.Kuole();
                                 Pelimoottori.KirjoitaRuuudulle("Et ehdi tulipallon alta pois ja muutut tuhkaksi, Hei hei.");
                                 valmis = true;
+                                break;
                             }
                             else
                             {
@@ -65,7 +66,7 @@ namespace Tekstiseikkailu
                         break;
                     case "mene pois":
                         Pelimoottori.KirjoitaRuuudulle(
-                            "Aarteet eivät ole sinua varten, jatkat matkaa keveyin repuin eteenpäin\n");
+                            "Aarteet eivät ole sinua varten, jatkat matkaa kevein repuin eteenpäin\n");
                         valmis = true;
                         break;
                     default:

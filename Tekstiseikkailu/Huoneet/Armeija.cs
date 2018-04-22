@@ -70,7 +70,7 @@ namespace Tekstiseikkailu
                         {
                             Pelimoottori.KirjoitaRuuudulle(
                                 "Oi voi, armeija on liian vahva sinulle.\n" +
-                                "Tyyppisi on mennytty, kiitos pelaamisesta.\n" +
+                                "Tyyppisi on mennyttä, kiitos pelaamisesta.\n" +
                                 "Parempaa onnea ensi kerralla");
                             Tyyppi.Kuole();
                         }
