@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Tekstiseikkailu.Huoneet;
 
 namespace Tekstiseikkailu
 {
-    class Huone
+    class Armeija : IHuone
     {
-        public static void Aloita()
+        public void Aloita()
         {
             Pelimoottori.RuutuVaihto();
             Pelimoottori.KirjoitaRuuudulle(
-                "Synnyt huoneeseen.\n" +
+                "Tulet suureen huoneeseen.\n" +
                 "Keksi miten pääset pois.\n" +
                 "Näet siellä armeijan.");
 
@@ -24,13 +25,14 @@ namespace Tekstiseikkailu
                 {
                     case "piiloudu":
                         Pelimoottori.KirjoitaRuuudulle("Menet piiloon ja armeija ei näe sinua.");
+                        Pelimoottori.KirjoitaRuuudulle("Mutta armeija on edelleen sinun ja ulospääsyn edessä.");
                         break;
                     case "juokse":
                         Pelimoottori.RuutuVaihto();
                         Pelimoottori.KirjoitaRuuudulle(
                             "Juokset suoraan päin armeijaa.\n" +
                             "Tulee melkoinen taistelu!");
-                        Huone.Taistele();
+                        Taistele();
                         valmis = true;
                         break;
                     case "ei mitään":
@@ -46,7 +48,7 @@ namespace Tekstiseikkailu
             }
         }
 
-        public static void Taistele()
+        public void Taistele()
         {
             bool valmis = false;
             while (!valmis)
@@ -60,8 +62,9 @@ namespace Tekstiseikkailu
                         {
                             Pelimoottori.KirjoitaRuuudulle(
                                 "Päihität armeijen helposti.\n" +
-                                "Onneksi olkoon, sait uuden tason.\n" +
+                                "Onneksi olkoon, sait kolme pistetettä.\n" +
                                 "Jatkat eteenpäin.");
+                            Tyyppi.pisteet += 3;
                         }
                         else
                         {
@@ -86,7 +89,8 @@ namespace Tekstiseikkailu
                             "Nyt alkaa armoton tuijotus." +
                             "Armeija alkaa räpytellä ja voitat!" +
                             "Armeija suuttuu toisilleen ja alkavat kinastelee" +
-                            "Hipsit samalla eteenpäin");
+                            "Hipsit samalla eteenpäin ja ansaitse yhden pisteen");
+                        Tyyppi.pisteet += 1;
                         valmis = true;
                         break;
                     default:

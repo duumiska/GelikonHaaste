@@ -1,16 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Tekstiseikkailu.Huoneet;
 
 namespace Tekstiseikkailu
 {
     public class Pelimoottori
     {
         static Random rnd = new Random();
+        static List<IHuone> huoneet;
 
         public static void KirjoitaRuuudulle(string teksti)
         {
             Console.WriteLine(teksti);
+        }
+
+        public static void LataaHuoneet(params IHuone[] aloitushuoneet)
+        {
+            huoneet = new List<IHuone>(aloitushuoneet);
+        }
+
+        public static bool SatunnainenHuone()
+        {
+            if (huoneet.Count < 1)
+            {
+                return false;
+            }
+            int satunnainenHuone = rnd.Next(0, huoneet.Count);
+            huoneet[satunnainenHuone].Aloita();
+            //huoneet.RemoveAt(satunnainenHuone);
+            return true;
+        }
+
+        public static bool Tarkista()
+        {
+            if(Tyyppi.pisteet > 10)
+            {
+                KirjoitaRuuudulle("VOITTO! Sä voitit! Oot ihan paras <3");
+                return false;
+            }
+            if(Tyyppi.elossa)
+            {
+                return true;
+            }
+            KirjoitaRuuudulle("Oi voi. Olet kuollut. Seikkailu päättyi tähän." +
+                "Sait kuitenkin pisteitä " + Tyyppi.pisteet + "/10");
+            return false;
         }
 
         public static void RuutuVaihto()

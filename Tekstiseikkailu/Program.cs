@@ -18,12 +18,19 @@ namespace Tekstiseikkailu
                 Tyyppi.TeeTyyppi();
 
                 Pelimoottori.KirjoitaRuuudulle(
-                    "Moi " + Tyyppi.nimi);
+                    "Moi " + Tyyppi.nimi + "\n" +
+                    "Aloitamme nyt pelin arpomalla aloitushuoneen");
 
-                Huone.Aloita();
+                Pelimoottori.LataaHuoneet(new Armeija(), new Aarrearkku());
 
-                // Sanity check
-                //Pelimoottori.Tarkista()
+                while (Pelimoottori.Tarkista())
+                {
+                    if(!Pelimoottori.SatunnainenHuone())
+                    {
+                        Pelimoottori.KirjoitaRuuudulle("Pelasit kaikki huoneet läpi, onneksi olkoon!");
+                        break;
+                    }
+                }
 
                 Pelimoottori.KirjoitaRuuudulle("Peli loppui");
 
